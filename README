@@ -1,26 +1,22 @@
-Full name:  Ankit Mishra
-SEAS login: mankit
+This repository is for a Java based xpath enigine and RSS aggregator based on the following grammar -
 
-Which features did you implement? 
-  Entire assignment
+ XPath  ->  axis step          
+ axis  ->  /          
+ step  ->  nodename ([ test ])* (axis step)?           
+ test  ->  step   
+       ->  text() = "..."   
+       ->  contains(text(), "...")   
+       ->  @attname = "..."  
 
-Did you complete any extra-credit tasks? If so, which ones?
-  Yes - multi threaded crawler (submitted in this submission)
+where nodename and attname are valid XML identifiers, and "..." indicates a quoted string. 
+This means that a query like /db/record/name[text() = "Alice"] is valid 
+But the similar (and valid XPath) query /db/record/child::name[text() = "Bob"] is not. 
+Below are some examples of valid XPaths that you need to support :  
+ /foo/bar/xyz   /foo/bar[@att="123"]   /xyz/abc[contains(text(),"someSubstring")]   /a/b/c[text()="theEntireText"]   /blah[anotherElement]   /this/that[something/else]   /d/e/f[foo[text()="something"]][bar]  /a/b/c[text() =   "whiteSpacesShouldNotMatter"]
 
-Any special instructions for building and running your solution?
-  Please use sudo while building.
+The RSS aggregator is a multi threaded web crawler which fetches the webpages/xml/rss feed from the given input.
+
+Instructions for building and running the project - 
   You can use ./fullTest.sh to run the servlet into jetty if jetty is installed at /usr/share/jetty/webapps
   Run the servlet at the url - http://localhost:8080/servlet/xpath
 
-Did you personally write _all_ the code you are submitting
-(other than code from the course web page)?
-  [x] Yes
-  [ ] No
-
-Did you copy any code from the Internet, or from classmates?
-  [ ] Yes
-  [x] No
-
-Did you collaborate with anyone on this assignment?
-  [ ] Yes
-  [x] No
